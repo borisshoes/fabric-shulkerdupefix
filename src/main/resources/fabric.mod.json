@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "shulkerdupefix",
+  "version": "${version}",
+  "name": "Shulkerdupefix",
+  "description": "Fixes the very easy to do shulker box dupe glitch and alerts admins when attempted.",
+  "authors": [
+    "BorisShoes"
+  ],
+  "contact": {
+    "repo": "https://github.com/borisshoes/fabric-shulkerdupefix"
+  },
+  "license": "MIT",
+  "icon": "assets/shulkerdupefix/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "net.borisshoes.shulkerdupefix.Shulkerdupefix"
+    ]
+  },
+  "mixins": [
+    "shulkerdupefix.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric": "*",
+    "minecraft": "1.19.2"
+  }
+}
