@@ -1,7 +1,6 @@
 package net.borisshoes.shulkerdupefix;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -9,7 +8,6 @@ import net.minecraft.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ShulkerBoxScreenHandler;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.PlayerManager;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralTextContent;
@@ -20,15 +18,12 @@ import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.List;
-
 public class Shulkerdupefix implements ModInitializer {
    
    private static final Logger logger = LogManager.getLogger("Shulker Dupe Fix");
    
    @Override
    public void onInitialize(){
-      ServerTickEvents.END_SERVER_TICK.register(this::onTick);
       PlayerBlockBreakEvents.BEFORE.register(this::breakBlocks);
       
       logger.info("Initializing Shulker Dupe Fix");
@@ -68,15 +63,5 @@ public class Shulkerdupefix implements ModInitializer {
          return true;
       }
       
-   }
-   
-   private void onTick(MinecraftServer server){
-      List<ServerPlayerEntity> players = server.getPlayerManager().getPlayerList();
-      for(ServerPlayerEntity player : players){
-         ScreenHandler screen = player.currentScreenHandler;
-         if(!(screen == null || screen.equals(player.playerScreenHandler))){
-            //System.out.println(screen.toString());
-         }
-      }
    }
 }
